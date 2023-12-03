@@ -17,7 +17,7 @@ async function getTrailerId(req, res) {
         const trailerId = await movieService.getTrailerId(movieId)
         res.send(trailerId)
     } catch (err) {
-        logger.error(`Couldn't fetch trailer id`)
+        // logger.error(`Couldn't fetch trailer id`)
         res.status(500).send({ err: 'Failed to fetch trailer id' })
     }
 }
@@ -32,7 +32,7 @@ async function getMoviesByCategory(req, res) {
         }
         res.send(category)
     } catch (err) {
-        logger.error(`Couldn't fetch movies by category`)
+        // logger.error(`Couldn't fetch movies by category`)
         res.status(500).send({ err: 'Failed to fetch movies by category' })
     }
 }

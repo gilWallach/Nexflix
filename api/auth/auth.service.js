@@ -8,8 +8,8 @@ const cryptr = new Cryptr(process.env.SECRET1 || 'Secret-Puk-1234')
 
 async function login(email, password) {
     const account = await accountService.getAccountByEmail(email)
-    if (!account) return Promise.reject('Invalid email or password')
-
+    if (!account) return Promise.reject('Invalid email')
+    
     const match = await bcrypt.compare(password, account.password)
     if (!match) return Promise.reject('Invalid email or password')
 
@@ -43,8 +43,6 @@ function validateToken(loginToken) {
     }
     return null
 }
-
-
 
 module.exports = {
     signup,

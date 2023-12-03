@@ -35,7 +35,7 @@ async function getTrailerId(movieId) {
         const trailerId = movie.key
         return trailerId
     } catch (err) {
-        logger.error(`Couldn't get trailerId from: ${endpoint}`)
+        // logger.error(`Couldn't get trailerId from: ${endpoint}`)
         throw err
     }
 }
@@ -48,7 +48,7 @@ async function getMoviesByCategory(endpoint, data) {
         movies = categoryMovies.map((movie) => {return _formatMovie(movie)})
         return movies
     } catch (err) {
-        logger.error(`Couldn't get movies from category`)
+        // logger.error(`Couldn't get movies from category`)
         throw err
     }
 }

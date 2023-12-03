@@ -6,8 +6,7 @@ async function login(req, res) {
     try {
         const account = await authService.login(email, password)
         const loginToken = authService.getLoginToken(account)
-        res.cookie('loginToken', loginToken)
-
+        res.cookie('loginToken', loginToken, { sameSite: 'None', secure: true })
         res.json(account)
     } catch (err) {
         logger.error('Failed to Login ' + err)
@@ -21,11 +20,10 @@ async function signup(req, res) {
         const account = await authService.signup(email, password)
         const loginToken = authService.getLoginToken(account)
         
-        res.cookie('loginToken', loginToken)
+        res.cookie('loginToken', loginToken, { sameSite: 'None', secure: true })
         res.json(account)
     } catch (error) {
         logger.error('Failed to signup ' + error)
-        console.log(error);
         res.status(500).send({ err: `Failed to signup: ${error}` })
     }
 }
