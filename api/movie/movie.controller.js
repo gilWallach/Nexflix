@@ -23,7 +23,7 @@ async function getTrailerId(req, res) {
 }
 
 async function getMoviesByCategory(req, res) {
-    const { categoryName, endpoint, data } = req.query   
+    const { categoryName, endpoint, data } = req.query
     try {
         const categoryMovies = await movieService.getMoviesByCategory(endpoint, data)
         const category = {
@@ -37,8 +37,20 @@ async function getMoviesByCategory(req, res) {
     }
 }
 
+async function getMoviesByName(req, res) {
+    const { endpoint, data } = req.query
+    try {
+        const results = await movieService.getMoviesByName(endpoint, data)
+        console.log(results);
+        return results
+    } catch (err) {
+        res.status(500).send({ err: 'Failed to fetch movies by text' })
+    }
+}
+
 module.exports = {
     getRndMovie,
     getTrailerId,
     getMoviesByCategory,
+    getMoviesByName,
 }
