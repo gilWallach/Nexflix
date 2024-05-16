@@ -1,5 +1,6 @@
 const MongoClient = require('mongodb').MongoClient
 const config = require('../config')
+const logger = require('../services/logger.service')
 
 module.exports = {
     getCollection
@@ -26,6 +27,7 @@ async function connect() {
         const client = await MongoClient.connect(config.dbURL)
         const db = client.db(config.dbName)
         dbConn = db
+        console.log("connected to DB");
         return db
     } catch (err) {
         logger.error('Cannot Connect to DB', err)
